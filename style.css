@@ -1,0 +1,89 @@
+:root {
+  color-scheme: dark;
+  --night-0: #04070e;
+  --night-1: #09101c;
+  --night-2: #101b2b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 75% 68% at 50% 44%, #132235 0%, #0a1220 46%, #05080f 78%, #020407 100%);
+}
+
+body {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+}
+
+body.dragging {
+  cursor: grabbing;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* Cinematic vignette and a whisper of grain — atmospheric, never interface. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 47%, transparent 48%, rgba(1, 4, 10, 0.18) 73%, rgba(0, 2, 7, 0.62) 100%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.008) 0, rgba(255, 255, 255, 0.008) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: multiply;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image:
+    radial-gradient(rgba(180, 210, 255, 0.5) 0.55px, transparent 0.75px),
+    radial-gradient(rgba(255, 220, 180, 0.35) 0.5px, transparent 0.7px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 2px;
+  animation: grain 0.55s steps(2) infinite;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, 1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+.npm-cache/
+previews/
+*.log
+debug.mjs
+inspect.mjs
+inspect2.mjs
+angles.mjs
+capture.mjs
+github_*.mjs
+repair.py
+雨夜便利店街角.html
+.DS_Store
